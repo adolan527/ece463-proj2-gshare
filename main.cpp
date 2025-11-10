@@ -3,7 +3,7 @@
 #include "BranchPredictor.h"
 
 int main(int argc, char **argv) {
-
+/*
     auto bp0 = BranchPredictor(Bimodal,6,0);
     auto bp1 = BranchPredictor(Bimodal,12,0);
     auto bp2 = BranchPredictor(Gshare,9,3);
@@ -18,10 +18,9 @@ int main(int argc, char **argv) {
     bp3.ReadTraceFile("gcc_trace.txt");
     bp3.PrintStatistics(stdout);
 
-
-
-
     return 0;
+
+    */
     const char bimodal_string[] = "bimodal";
     const char gshare_string[] = "gshare";
 

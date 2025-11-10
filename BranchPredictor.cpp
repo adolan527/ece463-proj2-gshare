@@ -71,8 +71,8 @@ size_t BranchPredictor::GetIndex(uint64_t address) {
 }
 
 void BranchPredictor::PrintStatistics(FILE *file) {
-    printf(" number of predictions:\t%llu\n",m_prediction_counter);
-    printf(" number of mispredictions:\t%llu\n",m_misprediction_counter);
+    printf(" number of predictions:\t%llu\n",m_prediction_counter-1);
+    printf(" number of mispredictions:\t%llu\n",m_misprediction_counter-1);
     printf(" misprediction rate:\t%.2f%%\n",100.0f * (double)m_misprediction_counter/(double)m_prediction_counter);
     printf("FINAL %s CONTENTS\n",m_mode==Bimodal ? "BIMODAL" : m_mode == Gshare ? "GSHARE" : "INVALID_MODE");
     for (int i = 0; i < m_counters.size(); i++) {
