@@ -91,3 +91,11 @@ void BranchPredictor::PrintStatistics(FILE *file) {
     }
 }
 
+void BranchPredictor::PrintMispredictionRate(FILE *file) {
+    printf("%.2f\n",100.0f * (double)m_misprediction_counter/(double)m_prediction_counter);
+}
+
+double BranchPredictor::GetMispredictionRate() {
+    return 100.0f * (double)m_misprediction_counter/(double)m_prediction_counter;
+}
+

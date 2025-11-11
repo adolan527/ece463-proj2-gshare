@@ -62,6 +62,10 @@ public:
     void ReadTraceFile(char *trace_file);
 
     void PrintStatistics(FILE *file = stdout);
+
+    void PrintMispredictionRate(FILE *file = stdout);
+
+    double GetMispredictionRate();
 };
 
 

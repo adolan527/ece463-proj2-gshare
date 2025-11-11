@@ -3,24 +3,19 @@
 #include "BranchPredictor.h"
 
 int main(int argc, char **argv) {
-    /*
-        auto bp0 = BranchPredictor(Bimodal,6,0);
-        auto bp1 = BranchPredictor(Bimodal,12,0);
-        auto bp2 = BranchPredictor(Gshare,9,3);
-        auto bp3 = BranchPredictor(Gshare,14,8);
 
-        bp0.ReadTraceFile("gcc_trace.txt");
-        bp0.PrintStatistics(stdout);
-        bp1.ReadTraceFile("gcc_trace.txt");
-        bp1.PrintStatistics(stdout);
-        bp2.ReadTraceFile("gcc_trace.txt");
-        bp2.PrintStatistics(stdout);
-        bp3.ReadTraceFile("gcc_trace.txt");
-        bp3.PrintStatistics(stdout);
-
-        return 0;
-
-        */
+/*
+    for (int m = 7; m <= 20; m++) {
+        printf("%d, ",m);
+        for (int n = 0; n <= m; n++) {
+            auto bp = BranchPredictor(Gshare,m,n);
+            bp.ReadTraceFile("gcc_trace.txt");
+            printf("%.2f, ",bp.GetMispredictionRate());
+        }
+        for (int j = 20; j >= m; j--) printf(",");
+        printf("\n");
+    }
+*/
     const char bimodal_string[] = "bimodal";
     const char gshare_string[] = "gshare";
 
