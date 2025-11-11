@@ -3,24 +3,24 @@
 #include "BranchPredictor.h"
 
 int main(int argc, char **argv) {
-/*
-    auto bp0 = BranchPredictor(Bimodal,6,0);
-    auto bp1 = BranchPredictor(Bimodal,12,0);
-    auto bp2 = BranchPredictor(Gshare,9,3);
-    auto bp3 = BranchPredictor(Gshare,14,8);
+    /*
+        auto bp0 = BranchPredictor(Bimodal,6,0);
+        auto bp1 = BranchPredictor(Bimodal,12,0);
+        auto bp2 = BranchPredictor(Gshare,9,3);
+        auto bp3 = BranchPredictor(Gshare,14,8);
 
-    bp0.ReadTraceFile("gcc_trace.txt");
-    bp0.PrintStatistics(stdout);
-    bp1.ReadTraceFile("gcc_trace.txt");
-    bp1.PrintStatistics(stdout);
-    bp2.ReadTraceFile("gcc_trace.txt");
-    bp2.PrintStatistics(stdout);
-    bp3.ReadTraceFile("gcc_trace.txt");
-    bp3.PrintStatistics(stdout);
+        bp0.ReadTraceFile("gcc_trace.txt");
+        bp0.PrintStatistics(stdout);
+        bp1.ReadTraceFile("gcc_trace.txt");
+        bp1.PrintStatistics(stdout);
+        bp2.ReadTraceFile("gcc_trace.txt");
+        bp2.PrintStatistics(stdout);
+        bp3.ReadTraceFile("gcc_trace.txt");
+        bp3.PrintStatistics(stdout);
 
-    return 0;
+        return 0;
 
-    */
+        */
     const char bimodal_string[] = "bimodal";
     const char gshare_string[] = "gshare";
 
@@ -52,6 +52,9 @@ int main(int argc, char **argv) {
 
     auto bp = BranchPredictor(mode,pc_bits,gbhr_bits);
     bp.ReadTraceFile(trace_file);
+    printf("COMMAND\n");
+    for (int i = 0; i < argc;i++) printf(" %s",argv[i]);
+    printf("\nOUTPUT\n");
     bp.PrintStatistics();
 
 

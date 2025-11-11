@@ -56,7 +56,7 @@ private:
 public:
     BranchPredictor (Mode mode, size_t m, size_t n)
     : m_mode(mode), m_pc_bits(m), m_gbhr_bits(n), m_gbhr(0), m_prediction_counter(0), m_misprediction_counter(0){
-        m_counters.resize(2 << m_pc_bits,2);
+        m_counters.resize(1 << m_pc_bits,2);
     }
 
     void ReadTraceFile(char *trace_file);
