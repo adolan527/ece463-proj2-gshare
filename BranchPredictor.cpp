@@ -4,24 +4,28 @@
 
 #include "BranchPredictor.h"
 #include <cstdio>
-
+#include <cstdlib>
 void BranchPredictor::ReadTraceFile(char *trace_file) {
     FILE* file = fopen(trace_file,"r");
     if (!file) {
         printf("Failed to open %s\n",trace_file);
         return;
     }
-    int x = 0;
     uint64_t address = 0;
     char status = 0;
-    fscanf(file,"%llx %c",&address,&status);
+    char buffer[32] ={0};
     while (!feof(file)) {
+        fgets(buffer,32,file);
+        if (feof(file))break;
+        char* endptr;
+        address = strtol(buffer,&endptr,16);
+        status = endptr[1];
         auto index = GetIndex(address);
         bool actual_taken = status == 't';
         PredictBranch(index,actual_taken);
-        fscanf(file,"%llx %c",&address,&status);
 
     }
+
     fclose(file);
 }
 
