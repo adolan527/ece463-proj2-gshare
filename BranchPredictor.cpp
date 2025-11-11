@@ -11,14 +11,16 @@ void BranchPredictor::ReadTraceFile(char *trace_file) {
         printf("Failed to open %s\n",trace_file);
         return;
     }
-
+    int x = 0;
+    uint64_t address = 0;
+    char status = 0;
+    fscanf(file,"%llx %c",&address,&status);
     while (!feof(file)) {
-        uint64_t address = 0;
-        char status = 0;
-        fscanf(file,"%llx %c",&address,&status);
         auto index = GetIndex(address);
         bool actual_taken = status == 't';
         PredictBranch(index,actual_taken);
+        fscanf(file,"%llx %c",&address,&status);
+
     }
     fclose(file);
 }
@@ -71,8 +73,8 @@ size_t BranchPredictor::GetIndex(uint64_t address) {
 }
 
 void BranchPredictor::PrintStatistics(FILE *file) {
-    printf(" number of predictions:\t%llu\n",m_prediction_counter-1);
-    printf(" number of mispredictions:\t%llu\n",m_misprediction_counter-1);
+    printf(" number of predictions:\t%llu\n",m_prediction_counter);
+    printf(" number of mispredictions:\t%llu\n",m_misprediction_counter);
     printf(" misprediction rate:\t%.2f%%\n",100.0f * (double)m_misprediction_counter/(double)m_prediction_counter);
     printf("FINAL %s CONTENTS\n",m_mode==Bimodal ? "BIMODAL" : m_mode == Gshare ? "GSHARE" : "INVALID_MODE");
     for (int i = 0; i < m_counters.size(); i++) {

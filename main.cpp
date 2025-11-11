@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     const char bimodal_string[] = "bimodal";
     const char gshare_string[] = "gshare";
 
-    if (argc > 4 || argc < 3) {
+    if (argc > 5 || argc < 4) {
         printf("Usage: sim MODE PARAM1 [PARAM2] TRACEFILE");
         printf("Valid modes: \"%s\" or \"%s\"\n",bimodal_string,gshare_string);
         return 0;
