@@ -14,10 +14,13 @@ void BranchPredictor::ReadTraceFile(char *trace_file) {
     uint64_t address = 0;
     char status = 0;
     char buffer[32] ={0};
+    int x = 0;
+    char* endptr;
+
     while (!feof(file)) {
+        endptr = nullptr;
         fgets(buffer,32,file);
         if (feof(file))break;
-        char* endptr;
         address = strtol(buffer,&endptr,16);
         status = endptr[1];
         auto index = GetIndex(address);
@@ -56,6 +59,7 @@ bool BranchPredictor::PredictBranch(size_t index, bool actual_taken) {
         uint64_t bit = actual_taken ? 1 : 0;
         bit = bit << m_gbhr_bits;
         m_gbhr |= bit;
+        m_gbhr &= ~(0xFFFFFFFFFFFFFFFF << m_gbhr_bits); // safety mask
     }
 
     return predict_taken;
@@ -68,6 +72,7 @@ size_t BranchPredictor::GetIndex(uint64_t address) {
     if (m_mode == Bimodal) return address;
     uint64_t gbhr_mask = m_gbhr << (m_pc_bits - m_gbhr_bits);
     address ^= gbhr_mask;
+    address &= mask; // safety mask
     if (m_mode == Gshare) return address;
 
     // how did we get here?
