@@ -34,8 +34,8 @@ int main(int argc, char **argv) {
     size_t pc_bits = 0, gbhr_bits = 0;
     char* trace_file = nullptr;
 
-    if (strcmp(argv[1],bimodal_string)) mode = Bimodal;
-    else if (strcmp(argv[1],gshare_string)) mode = Gshare;
+    if (strcmp(argv[1],bimodal_string) == 0) mode = Bimodal;
+    else if (strcmp(argv[1],gshare_string) == 0) mode = Gshare;
     else {
         printf("Invalid mode\n");
         return 0;
