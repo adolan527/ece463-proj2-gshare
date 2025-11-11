@@ -57,7 +57,7 @@ bool BranchPredictor::PredictBranch(size_t index, bool actual_taken) {
     if (m_mode == Gshare) { // update global branch history register
         m_gbhr = m_gbhr >> 1;
         uint64_t bit = actual_taken ? 1 : 0;
-        bit = bit << m_gbhr_bits;
+        bit = bit << (m_gbhr_bits-1);
         m_gbhr |= bit;
         m_gbhr &= ~(0xFFFFFFFFFFFFFFFF << m_gbhr_bits); // safety mask
     }
